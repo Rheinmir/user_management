@@ -4,5 +4,12 @@
     const _ACTION ='dashboard';
     
     //Create host
-   
+    define('_WEB_HOST','http://'.$_SERVER['HTTP_HOST'].'/user_management/');
+    define('_WEB_HOST_TEMPLATES',_WEB_HOST.'templates');
+
+    //create path
+     define('_WEB_PATH', __DIR__);
+     define('_WEB_PATH_TEMPLATES', _WEB_PATH .'/templates');
+    
 ?>
+ 

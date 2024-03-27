@@ -1,2 +1,2 @@
-<script src="templates/js/bootstrap.min.js"></script>
- <script src="templates/js/custom.js"></script>
+<script src="<?php echo _WEB_HOST_TEMPLATES; ?>/js/bootstrap.min.js"></script>
+ <script src="<?php echo _WEB_HOST_TEMPLATES; ?>/js/custom.js"></script>

@@ -1,9 +1,9 @@
 <?php
-require_once('templates/layout/header.php');
+require_once(_WEB_PATH_TEMPLATES.'/layout/header.php');
 ?>
 
 <h1>DASHBOARD</h1>
 
 <?php
-require_once('templates/layout/footer.php');
+require_once(_WEB_PATH_TEMPLATES.'/layout/footer.php');
 ?>

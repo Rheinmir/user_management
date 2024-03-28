@@ -18,7 +18,6 @@ mysqli
 */
 
 //connection info
-require_once'./manager_users/config.php';
 
 try {
     if (class_exists('PDO')) {

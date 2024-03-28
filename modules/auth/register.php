@@ -1,8 +1,15 @@
 <?php
 $data = [
-    'pageTitle' => 'User Register'
+    'fullname' => 'Karen',
+    'email' => 'karen@dtb.edu',
+    'phone' => '12376681',
 ];
+
+
+$rs = getRow('SELECT * FROM student');
 layouts('header', $data);
+
+var_dump($rs);
 ?>
 <div class="row">
     <div class="col-6" style="margin: 50px auto;">

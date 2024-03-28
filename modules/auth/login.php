@@ -4,18 +4,26 @@ $data = [
     'pageTitle' => 'User Login'
 ];
 layouts('header', $data);
+
+// $result = filter();
+// echo '<pre>';
+// print_r($result);
+// echo '</pre>';
+$check = isNumberFloat('22.2');
+var_dump($check);
+
 ?>
 <div class="row">
     <div class="col-6" style="margin: 50px auto;">
-        <form action="/submit-your-login-form" method="post">
+        <form action="" method="post">
             <h2 class="text-center text-uppercase">Login</h2>
             <div class="form-group mg-form">
                 <label for="">Email:</label>
-                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                <input name="email" type="email" class="form-control" placeholder="Email" required>
             </div>
             <div class="form-group mg-form">
                 <label for="">Password:</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <input name="password" type="password" class="form-control" placeholder="Password" required>
             </div>
             <div>
                 <button type="submit" class=" mg-btn btn btn-primary btn-block">Log In</button>

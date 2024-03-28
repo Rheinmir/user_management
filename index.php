@@ -2,15 +2,20 @@
 session_start();
 require_once('config.php');
 require_once('./includes/connect.php');
+
+// Requires classes and interfaces for sending emails via SMTP.
+require_once('./includes/phpmailer/Exception.php');
+require_once('./includes/phpmailer/PHPMailer.php');
+require_once('./includes/phpmailer/SMTP.php');
+
 require_once('./includes/function.php');
 require_once('./includes/database.php');
 require_once('./includes/session.php');
 
-// setFlashData('msg','Setting succeed');
 echo getFlashData('msg');
-// $session_test = setSession('rhein','rhein session value');
-// var_dump($session_test);
-
+// $subject ='rhein test mail';
+// $content = 'Mail content';
+// sendMail('rheinmir2002@gmail.com',$subject,$content);
 
 $module = _MODULE;
 $action = _ACTION;

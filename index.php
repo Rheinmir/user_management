@@ -1,12 +1,13 @@
 <?php
 session_start();
 require_once('config.php');
+require_once('./includes/function.php');
 
 $module = _MODULE;
 $action = _ACTION;
 
 
-echo '<i class="fa-solid fa-house"></i>';
+// echo '<i class="fa-solid fa-house"></i>';
 // Check if 'module' parameter in GET request is not empty and of type string.
 
 if(!empty($_GET['module'])){

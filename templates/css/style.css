@@ -1,1 +1,9 @@
 /*CSS pj*/
+.mg-form {
+    margin-bottom: 10px;
+}
+
+.mg-btn {
+    margin:20px auto;
+    width:100%;
+}

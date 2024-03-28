@@ -4,6 +4,13 @@ require_once('config.php');
 require_once('./includes/connect.php');
 require_once('./includes/function.php');
 require_once('./includes/database.php');
+require_once('./includes/session.php');
+
+// setFlashData('msg','Setting succeed');
+echo getFlashData('msg');
+// $session_test = setSession('rhein','rhein session value');
+// var_dump($session_test);
+
 
 $module = _MODULE;
 $action = _ACTION;

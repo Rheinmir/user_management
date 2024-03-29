@@ -14,6 +14,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+// `sendMail` function sends email using PHPMailer library with SMTP settings.
 function sendMail($to, $subject, $content)
 {
 
@@ -59,6 +60,7 @@ function isGet()
     return false;
 }
 
+// Track POST
 function isPost()
 {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -66,6 +68,8 @@ function isPost()
     }
     return false;
 }
+
+// Sanitizes and filters input from GET and POST requests.
 function filter()
 {
     $filterArr = [];
@@ -73,7 +77,7 @@ function filter()
     if (isGet()) {
         if (!empty($_GET)) {
             foreach ($_GET as $key => $value) {
-                $filterArr[$key] = filter_input(INPUT_GET,$key, FILTER_SANITIZE_SPECIAL_CHARS);
+                $filterArr[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
     }
@@ -82,7 +86,7 @@ function filter()
     if (isPost()) {
         if (!empty($_POST)) {
             foreach ($_POST as $key => $value) {
-                $filterArr[$key] = filter_input(INPUT_POST,$key, FILTER_SANITIZE_SPECIAL_CHARS);
+                $filterArr[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
     }
@@ -92,20 +96,47 @@ function filter()
 
 //Track email
 // Function that validates if a given string is an email.
-function isEmail($email){
-    $checkEmail = filter_var($email,FILTER_VALIDATE_EMAIL);
+function isEmail($email)
+{
+    $checkEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
     return $checkEmail;
 }
 // Validates if a variable is an integer
-function isNumberInt($number){
-    $checkNumber = filter_var($number,FILTER_VALIDATE_INT);
+function isNumberInt($number)
+{
+    $checkNumber = filter_var($number, FILTER_VALIDATE_INT);
     return $checkNumber;
 }
 // Checks if a variable is a float
-function isNumberFloat($number){
-    $checkFloat = filter_var($number,FILTER_VALIDATE_FLOAT);
+function isNumberFloat($number)
+{
+    $checkFloat = filter_var($number, FILTER_VALIDATE_FLOAT);
     return $checkFloat;
-}  
+}
+
+// Validates a phone number: removes leading "0" if present and checks if integer with length 9.
+function isPhone($phone)
+{
+    $checkZero = false;
+    // If the first character of phone number is "0", remove it.
+    if ($phone[0] == "0") {
+        $checkZero = true;
+        $phone = substr($phone, 1);
+    }
+
+    // Checks if a phone number is valid (integer and length 9).
+    $checkNumber = false;
+    if (isNumberInt($phone) && (strlen($phone) == 9)) {
+        $checkNumber = true;
+    }
+
+    // Returns true if both $checkZero and $checkNumber are true.
+    if ($checkZero && $checkNumber) {
+        return true;
+    }
+
+    return false;
+}
 ?>
 
 

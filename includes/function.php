@@ -39,13 +39,27 @@ function sendMail($to, $subject, $content)
 
 
         //Content
+        $mail -> CharSet = "UTF-8";
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = $subject;
         $mail->Body    = $content;
 
-        $mail->send();
+        //PHPMailer SSL certificate verify failed
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true,
+            )
+        );
 
-        echo 'Message has been sent';
+
+        $sendMail = $mail->send();
+        if ($sendMail) {
+            return $sendMail;
+        }
+
+        // echo 'Message has been sent';
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
@@ -114,17 +128,20 @@ function isNumberFloat($number)
     return $checkFloat;
 }
 
-// Validates a phone number: removes leading "0" if present and checks if integer with length 9.
+
+// Validates a phone number: starts with "0" and has 9 digits
 function isPhone($phone)
 {
     $checkZero = false;
-    // If the first character of phone number is "0", remove it.
+
+    // Checks if phone number starts with "0", removes it if found.
     if ($phone[0] == "0") {
         $checkZero = true;
         $phone = substr($phone, 1);
     }
 
-    // Checks if a phone number is valid (integer and length 9).
+
+    // Checks if a string is a valid integer greater than or equal to 9 characters.
     $checkNumber = false;
     if (isNumberInt($phone) && (strlen($phone) == 9)) {
         $checkNumber = true;
@@ -137,7 +154,35 @@ function isPhone($phone)
 
     return false;
 }
+
+//Error notice
+function getSmg($smg, $type = 'success')
+{
+    echo '<div class= "alert alert-' . $type . '">';
+    echo $smg;
+    echo '</div>';
+}
+
+// Function redirects to a specified path using HTTP header and exits execution.
+function redirect($path = 'index.php')
+{
+    header("Location: $path");
+    exit;
+}
+
+// Returns a formatted error message for a given field if exists.
+function form_error($fileName, $beforeHtml = '', $afterHtml = '', $errors)
+{
+    return (!empty($errors[$fileName])) ? $beforeHtml . reset($errors[$fileName]) . $afterHtml : null;
+}
+
+function old($fileName, $olddata, $default = null)
+{
+    return (!empty($olddata[$fileName])) ? $olddata[$fileName] : $default;
+}
+
 ?>
+
 
 
 

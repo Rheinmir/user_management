@@ -5,13 +5,17 @@ $data = [
 ];
 layouts('header', $data);
 
-// $result = filter();
-// echo '<pre>';
-// print_r($result);
-// echo '</pre>';
-$check = isNumberFloat('22.2');
-var_dump($check);
+$password = '123456';
+// $md5 = md5($password);
+// $sha1 = sha1($password);
 
+// echo 'MD5-' . $md5 ;
+// echo 'SHA1-' . $sha1 ;
+$passwordhash = password_hash($password,PASSWORD_DEFAULT);
+
+$checkPass = password_verify('0123456',$passwordhash);
+
+var_dump($checkPass);
 ?>
 <div class="row">
     <div class="col-6" style="margin: 50px auto;">

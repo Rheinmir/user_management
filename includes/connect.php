@@ -30,9 +30,9 @@ try {
 
         $conn = new PDO($dsn, _USER, _PASS);
         // var_dump($conn); //if it returns value like "object(PDO)#1 (0) { }", meaning connection succeeded
-        if ($conn) {
-            echo 'Connection succeeded </br>';
-        }
+        // if ($conn) {
+        //      echo 'Connection succeeded </br>';
+        // }
     }
 } catch (Exception $exception) {
     echo '<div style="color:red; padding:5px 15px; border: 3px solid red;">';

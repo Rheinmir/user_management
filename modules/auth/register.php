@@ -92,21 +92,21 @@ if (isPost()) {
             //Mail sent executed
             $sendMail = sendMail($filterAll['email'], $subject, $content);
             if ($sendMail) {
-                setFlashData('smg', "Registration success!, check your mail to activate account");
-                setFlashData('smg_type', "success");
+                setFlashData('msg', "Registration success!, check your mail to activate account");
+                setFlashData('msg_type', "success");
             } else {
-                setFlashData('smg', "System error! please try again later");
-                setFlashData('smg_type', "danger");
+                setFlashData('msg', "System error! please try again later");
+                setFlashData('msg_type', "danger");
             }
         } else {
-            setFlashData('smg', "Registration failed! please try again later");
-            setFlashData('smg_type', "danger");
+            setFlashData('msg', "Registration failed! please try again later");
+            setFlashData('msg_type', "danger");
         }
 
         redirect('?module=auth&action=login');
     } else {
-        setFlashData('smg', "Please check insert data again!");
-        setFlashData('smg_type', "danger");
+        setFlashData('msg', "Please check insert data again!");
+        setFlashData('msg_type', "danger");
         setFlashData('errors', $errors);
         setFlashData('old', $filterAll);
         redirect('?module=auth&action=register');
@@ -115,8 +115,8 @@ if (isPost()) {
 
 layouts('header', $data);
 
-$smg = getFlashData('smg');
-$smg_type = getFlashData('smg_type');
+$msg = getFlashData('msg');
+$msg_type = getFlashData('msg_type');
 $errors = getFlashData('errors');
 $old = getFlashData('old');
 
@@ -130,8 +130,8 @@ echo '</pre>';
         <form action="" method="post">
             <h2 class="text-center text-uppercase">Register</h2>
             <?php
-            if (!empty($smg)) {
-                getSmg($smg, $smg_type);
+            if (!empty($msg)) {
+                getmsg($msg, $msg_type);
             }
             ?>
             <div class="form-group mg-form">

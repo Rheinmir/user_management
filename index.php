@@ -12,7 +12,7 @@ require_once('./includes/function.php');
 require_once('./includes/database.php');
 require_once('./includes/session.php');
 
-echo getFlashData('msg');
+// echo getFlashData('msg');
 // $subject ='rhein test mail';
 // $content = 'Mail content';
 // sendMail('rheinmir2002@gmail.com',$subject,$content);
@@ -43,14 +43,14 @@ if(!empty($_GET['action'])){
 
 
 
-echo $module.'</br>';
-echo $action.'</br>';
+// echo $module.'</br>';
+// echo $action.'</br>';
 
 // Checks if a file exists and includes it, if not includes a 404 error page.
 
 $path = 'modules/'. $module. '/'.$action.'.php';
 
-echo $path;
+// echo $path;
 
 if(file_exists($path)) {
     require_once($path);

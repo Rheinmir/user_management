@@ -156,10 +156,10 @@ function isPhone($phone)
 }
 
 //Error notice
-function getSmg($smg, $type = 'success')
+function getMsg($msg, $type = 'success')
 {
     echo '<div class= "alert alert-' . $type . '">';
-    echo $smg;
+    echo $msg;
     echo '</div>';
 }
 

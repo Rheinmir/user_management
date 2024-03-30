@@ -5,36 +5,88 @@ $data = [
 ];
 layouts('header', $data);
 
-$password = '123456';
-// $md5 = md5($password);
-// $sha1 = sha1($password);
+if (isPost()) {
+    $filterAll = filter();
 
-// echo 'MD5-' . $md5 ;
-// echo 'SHA1-' . $sha1 ;
-$passwordhash = password_hash($password,PASSWORD_DEFAULT);
+    // Verifies user login by comparing password from input with hashed password from DB.
+    if (!empty(trim($filterAll['email'])) && !empty(trim($filterAll['password']))) {
 
-$checkPass = password_verify('0123456',$passwordhash);
+        // Extracts email and password from filtered input.
+        $email = $filterAll['email'];
+        $password = $filterAll['password'];
 
-var_dump($checkPass);
+        // Retrieves the password of a student from a database based on their email address.
+        $userQuery = getOneRaw("SELECT password FROM student WHERE email = '$email'");
+
+        if (!empty($userQuery)) {
+            $passwordHash = $userQuery['password'];
+            if (password_verify($password, $passwordHash)) {
+                //create tokenLogin
+                $tokenLogin = sha1(uniqid().time());
+
+
+                $dataInsert = [
+                    'user_id' => $userID,
+                    'token' => $tokenLogin,
+                    'create_at' => date('Y-m-d H:i:s')
+                ];
+
+                $insertStatus = insert('loginToken',$dataInsert);
+                if($insertStatus){
+                    //Insert successful
+
+                    //save login token to session
+                    setSession('loginToken',$tokenLogin);
+                    redirect('?module=home&action=dashboard');
+                }else{
+                    setFlashData('msg', 'Cant login, please try again later');
+                    setFlashData('msg_type', 'danger');
+                }
+
+            } else {
+                setFlashData('msg', 'Wrong password!');
+                setFlashData('msg_type', 'danger');
+                
+            }
+        } else {
+            setFlashData('msg', 'Email not exist');
+            setFlashData('msg_type', 'danger');
+            
+        }
+    } else {
+        setFlashData('msg', 'Please enter your account and password');
+        setFlashData('msg_type', 'danger');
+        
+    }
+    redirect('?module=auth&action=login');
+}
+
+$msg = getFlashData('msg');
+$msg_type = getFlashData('msg_type');
+
 ?>
 <div class="row">
     <div class="col-6" style="margin: 50px auto;">
+        <h2 class="text-center text-uppercase">Login</h2>
+        <?php
+        if (!empty($msg)) {
+            getMsg($msg, $msg_type);
+        }
+        ?>
         <form action="" method="post">
-            <h2 class="text-center text-uppercase">Login</h2>
             <div class="form-group mg-form">
                 <label for="">Email:</label>
-                <input name="email" type="email" class="form-control" placeholder="Email" required>
+                <input name="email" type="email" class="form-control" placeholder="Email">
             </div>
             <div class="form-group mg-form">
                 <label for="">Password:</label>
-                <input name="password" type="password" class="form-control" placeholder="Password" required>
+                <input name="password" type="password" class="form-control" placeholder="Password">
             </div>
-            <div>
-                <button type="submit" class=" mg-btn btn btn-primary btn-block">Log In</button>
-                <hr>
-                <p class="text-center"><a href="?module=auth&action=forgot">Forgot the password?</a></p>
-                <p class="text-center"><a href="?module=auth&action=register">Register</a></p>
-            </div>
+            <button type="submit" class=" mg-btn btn btn-primary btn-block">Log In</button>
+            <hr>
+            <p class="text-center"><a href="?module=auth&action=forgot">Forgot the password?</a></p>
+            <p class="text-center"><a href="?module=auth&action=register">Register</a></p>
+
         </form>
     </div>
 </div>

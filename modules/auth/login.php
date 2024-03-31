@@ -16,10 +16,11 @@ if (isPost()) {
         $password = $filterAll['password'];
 
         // Retrieves the password of a student from a database based on their email address.
-        $userQuery = getOneRaw("SELECT password FROM student WHERE email = '$email'");
+        $userQuery = getOneRaw("SELECT password, id FROM student WHERE email = '$email'");
 
         if (!empty($userQuery)) {
             $passwordHash = $userQuery['password'];
+            $userID = $userQuery['id'];
             if (password_verify($password, $passwordHash)) {
                 //create tokenLogin
                 $tokenLogin = sha1(uniqid().time());

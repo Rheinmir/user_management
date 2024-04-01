@@ -5,6 +5,10 @@ $data = [
 ];
 layouts('header', $data);
 
+if(isLogin()){
+    redirect('?module=home&action=dashboard');
+}
+
 if (isPost()) {
     $filterAll = filter();
 

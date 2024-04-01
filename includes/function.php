@@ -181,6 +181,23 @@ function old($fileName, $olddata, $default = null)
     return (!empty($olddata[$fileName])) ? $olddata[$fileName] : $default;
 }
 
+function isLogin(){
+    $checkLogin = false;
+    if(getSession('loginToken')){
+        $tokenLogin = getSession('loginToken');
+    
+        $queryToken = getOneRaw("SELECT user_id FROM logintoken WHERE token = '$tokenLogin' ");
+    
+        if (!empty($queryToken)) {
+            $checkLogin = true;
+        } else {
+            removeSession('loginToken');
+        }
+        
+    };
+    
+    return $checkLogin;
+}
 ?>
 
 

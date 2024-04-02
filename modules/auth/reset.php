@@ -1,5 +1,5 @@
 <?php
-layouts('header');
+layouts('header-login');
 $token = filter()['token'];
 
 if (!empty($token)) {
@@ -98,5 +98,5 @@ if (!empty($token)) {
 ?>
 
 <?php
-layouts('footer');
+layouts('footer-login');
 ?>

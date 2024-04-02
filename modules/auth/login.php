@@ -97,5 +97,5 @@ $msg_type = getFlashData('msg_type');
 </div>
 
 <?php
-layouts('footer');
+layouts('footer-login');
 ?>

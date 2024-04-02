@@ -115,7 +115,7 @@ if (isPost()) {
     }
 }
 
-layouts('header', $data);
+layouts('header-login', $data);
 
 $msg = getFlashData('msg');
 $msg_type = getFlashData('msg_type');
@@ -192,5 +192,5 @@ echo '</pre>';
 </div>
 
 <?php
-layouts('footer');
+layouts('footer-login');
 ?>

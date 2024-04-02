@@ -103,7 +103,7 @@ if (isPost()) {
             setFlashData('msg_type', "danger");
         }
 
-        redirect('?module=auth&action=login');
+        redirect('?module=auth&action=register');
     } else {
         setFlashData('msg', "Please check insert data again!");
         setFlashData('msg_type', "danger");
@@ -177,10 +177,10 @@ echo '</pre>';
                 <?php
                 echo form_error('password-confirm', '<span class="error">', '</span>', $errors);
                 ?>
-            </div>
-            <div>
                 <button type="submit" class=" mg-btn btn btn-primary btn-block">Register</button>
                 <hr>
+            </div>
+            <div>
                 <p class="text-center"><a href="?module=auth&action=login">Already have an account?</a></p>
                 <p class="text-center"><a href="?module=auth&action=forgot">Forgot the password?</a></p>
             </div>

@@ -3,7 +3,7 @@
 $data = [
     'pageTitle' => 'User Login'
 ];
-layouts('header', $data);
+layouts('header-login', $data);
 
 if(isLogin()){
     redirect('?module=home&action=dashboard');
@@ -71,7 +71,7 @@ $msg_type = getFlashData('msg_type');
 
 ?>
 <div class="row">
-    <div class="col-6" style="margin: 50px auto;">
+    <div class="col-4" style="margin: 50px auto;">
         <h2 class="text-center text-uppercase">Login</h2>
         <?php
         if (!empty($msg)) {

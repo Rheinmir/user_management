@@ -70,6 +70,8 @@ if (isPost()) {
             'activeToken' => $activeToken,
             'create_at' => date('Y-m-d H:i:s')
         ];
+
+        
         $insertStatus = insert('student', $dataInsert);
         if ($insertStatus) {
 
@@ -126,7 +128,7 @@ echo '</pre>';
 
 ?>
 <div class="row">
-    <div class="col-6" style="margin: 50px auto;">
+    <div class="col-" style="margin: 50px auto;">
         <form action="" method="post">
             <h2 class="text-center text-uppercase">Register</h2>
             <?php

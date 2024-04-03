@@ -6,7 +6,7 @@ $data = [
 layouts('header-login', $data);
 
 if(isLogin()){
-    redirect('?module=home&action=dashboard');
+    redirect('?module=users&action=list');
 }
 
 if (isPost()) {

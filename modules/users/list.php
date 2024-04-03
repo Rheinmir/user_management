@@ -58,7 +58,7 @@ $msg_type = getFlashData('msg_type');
                         <td><?php echo $item['phone']; ?></td>
                         <td><?php echo $item['status'] == 1 ? '<button class="btn btn-success btn-sm">Activated</button>' : '<button class="btn btn-danger btn-sm">Not activated</button>'; ?></td>
                         <td><a href="<?php echo _WEB_HOST;?>?module=users&action=edit&id=<?php echo $item['id'];?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                        <td><a href="" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></td>
+                        <td><a href="<?php echo _WEB_HOST;?>?module=users&action=delete&id=<?php echo $item['id'];?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></td>
                     </tr>
                 <?php
                 endforeach;

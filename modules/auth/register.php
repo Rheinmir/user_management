@@ -1,9 +1,9 @@
 <?php
-$data = [
-    'fullname' => 'Karen',
-    'email' => 'karen@dtb.edu',
-    'phone' => '12376681',
-];
+// $data = [
+//     'fullname' => 'Karen',
+//     'email' => 'karen@dtb.edu',
+//     'phone' => '12376681',
+// ];
 
 
 // Conditional code execution based on HTTP method: if the request is a POST, it applies a filter and initializes an empty error array.
@@ -122,9 +122,9 @@ $msg_type = getFlashData('msg_type');
 $errors = getFlashData('errors');
 $old = getFlashData('old');
 
-echo '<pre>';
-print_r($old);
-echo '</pre>';
+// echo '<pre>';
+// print_r($old);
+// echo '</pre>';
 
 ?>
 <div class="row">

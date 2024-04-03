@@ -87,7 +87,7 @@ $msg_type = getFlashData('msg_type');
                 <label for="">Password:</label>
                 <input name="password" type="password" class="form-control" placeholder="Password">
             </div>
-            <button type="submit" class=" mg-btn btn btn-primary btn-block">Log In</button>
+            <button type="submit" class=" user-btn btn btn-primary btn-block">Log In</button>
             <hr>
             <p class="text-center"><a href="?module=auth&action=forgot">Forgot the password?</a></p>
             <p class="text-center"><a href="?module=auth&action=register">Register</a></p>

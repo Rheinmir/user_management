@@ -179,7 +179,7 @@ $old = getFlashData('old');
                 <?php
                 echo form_error('password-confirm', '<span class="error">', '</span>', $errors);
                 ?>
-                <button type="submit" class=" mg-btn btn btn-primary btn-block">Register</button>
+                <button type="submit" class=" user-btn btn btn-primary btn-block">Register</button>
                 <hr>
             </div>
             <div>

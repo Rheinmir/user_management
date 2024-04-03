@@ -7,6 +7,10 @@
     margin-top:20px;
     width:15%;
 }
+.user-btn {
+    margin-top:20px;
+    width:100%;
+}
 
 .error {
     color: red;

@@ -75,7 +75,7 @@ $msg_type = getFlashData('msg_type');
                 <input name="email" type="email" class="form-control" placeholder="Email">
             </div>
             
-            <button type="submit" class=" mg-btn btn btn-primary btn-block">Submit</button>
+            <button type="submit" class=" user-btn btn btn-primary btn-block">Submit</button>
             <hr>
             <p class="text-center"><a href="?module=auth&action=login">Remembered your password?</a></p>
             <p class="text-center"><a href="?module=auth&action=register">Register</a></p>

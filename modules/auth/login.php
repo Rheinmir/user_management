@@ -5,7 +5,7 @@ $data = [
 ];
 layouts('header-login', $data);
 
-if(isLogin()){
+if (isLogin()) {
     redirect('?module=users&action=list');
 }
 
@@ -26,42 +26,46 @@ if (isPost()) {
             $passwordHash = $userQuery['password'];
             $userID = $userQuery['id'];
             if (password_verify($password, $passwordHash)) {
-                //create tokenLogin
-                $tokenLogin = sha1(uniqid().time());
 
-
-                $dataInsert = [
-                    'user_id' => $userID,
-                    'token' => $tokenLogin,
-                    'create_at' => date('Y-m-d H:i:s')
-                ];
-
-                $insertStatus = insert('loginToken',$dataInsert);
-                if($insertStatus){
-                    //Insert successful
-
-                    //save login token to session
-                    setSession('loginToken',$tokenLogin);
-                    redirect('?module=home&action=dashboard');
-                }else{
-                    setFlashData('msg', 'Cant login, please try again later');
+                $userLogin = getRow("SELECT * FROM logintoken WHERE user_id = '$userID'");
+                if ($userLogin > 0) {
+                    setFlashData('msg', 'Cant login, account was signed in from somewhere else');
                     setFlashData('msg_type', 'danger');
-                }
+                    redirect('?module=auth&action=login');
+                } else {
+                    //create tokenLogin
+                    $tokenLogin = sha1(uniqid() . time());
 
+
+                    $dataInsert = [
+                        'user_id' => $userID,
+                        'token' => $tokenLogin,
+                        'create_at' => date('Y-m-d H:i:s')
+                    ];
+
+                    $insertStatus = insert('loginToken', $dataInsert);
+                    if ($insertStatus) {
+                        //Insert successful
+
+                        //save login token to session
+                        setSession('loginToken', $tokenLogin);
+                        redirect('?module=users&action=list');
+                    } else {
+                        setFlashData('msg', 'Cant login, please try again later');
+                        setFlashData('msg_type', 'danger');
+                    }
+                }
             } else {
                 setFlashData('msg', 'Wrong password!');
                 setFlashData('msg_type', 'danger');
-                
             }
         } else {
             setFlashData('msg', 'Email not exist');
             setFlashData('msg_type', 'danger');
-            
         }
     } else {
         setFlashData('msg', 'Please enter your account and password');
         setFlashData('msg_type', 'danger');
-        
     }
     redirect('?module=auth&action=login');
 }
